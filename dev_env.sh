@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-git pull origin/main
+git checkout main
+git pull 
 
 make_symlink() {
     local target="$1"
@@ -10,9 +10,10 @@ make_symlink() {
         echo  "Error at make_symlink"
         return 1
     fi
-
+    echo "Linking $linkpath to $target"
     ln -sfn "$target" "$linkpath"
 }
 
-	make_symlink "${pwd}/nvim" "${XDG_CONFIG:-$HOME/.config/nvim}"
- 
+make_symlink "${PWD}/nvim" "${XDG_CONFIG:-$HOME/.config/nvim}"
+
+make_symlink "${PWD}/tmux" "${XDG_CONFIG:-$HOME/.config/tmux}"
